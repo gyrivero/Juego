@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CantidadJugadoresActivity">
+
+    <TextView
+        android:id="@+id/bienvenidaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <TextView
+        android:id="@+id/cantidadJugTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad de Jugadores"
+        app:layout_constraintBottom_toBottomOf="@+id/cantidadjugSP"
+        app:layout_constraintEnd_toEndOf="@+id/bienvenidaTV"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/bienvenidaTV"
+        app:layout_constraintTop_toTopOf="@+id/cantidadjugSP" />
+
+    <Spinner
+        android:id="@+id/cantidadjugSP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cantidadJugTV"
+        app:layout_constraintTop_toBottomOf="@+id/bienvenidaTV" />
+
+    <Button
+        android:id="@+id/aceptarCantidadBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cantidadJugTV"
+        app:layout_constraintVertical_bias="0.299"
+        android:onClick="aceptar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

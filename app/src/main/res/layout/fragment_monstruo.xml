@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentoMonstruo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MonstruoFragment">
+
+    <TextView
+        android:id="@+id/nombreMonstruoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <ImageView
+        android:id="@+id/monstruoIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreMonstruoTV"
+        app:layout_constraintVertical_bias="0.22000003" />
+
+    <TextView
+        android:id="@+id/vidaMonstruoTV"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:text="Vida"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nombreMonstruoTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toEndOf="@+id/nombreMonstruoTV"
+        app:layout_constraintTop_toTopOf="@+id/nombreMonstruoTV" />
+
+    <Button
+        android:id="@+id/atacarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atacar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/monstruoIV"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="@+id/monstruoIV"
+        app:layout_constraintTop_toBottomOf="@+id/monstruoIV"
+        app:layout_constraintVertical_bias="0.24"/>
+
+    <TextView
+        android:id="@+id/vidaJugadorMTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vida"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/vidaMonstruoTV"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="@+id/vidaMonstruoTV"
+        app:layout_constraintTop_toBottomOf="@+id/defenderBtn"
+        app:layout_constraintVertical_bias="0.26999998" />
+
+    <Button
+        android:id="@+id/defenderBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Defender"
+        app:layout_constraintEnd_toEndOf="@+id/atacarBtn"
+        app:layout_constraintStart_toStartOf="@+id/atacarBtn"
+        app:layout_constraintTop_toBottomOf="@+id/atacarBtn" />
+
+    <TextView
+        android:id="@+id/nombreJugadorMTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/vidaJugadorMTV"
+        app:layout_constraintEnd_toEndOf="@+id/nombreMonstruoTV"
+        app:layout_constraintStart_toStartOf="@+id/nombreMonstruoTV"
+        app:layout_constraintTop_toTopOf="@+id/vidaJugadorMTV" />
+
+    <ImageButton
+        android:id="@+id/itemMonstruoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_swap_bag"
+        app:layout_constraintBottom_toBottomOf="@+id/defenderBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toEndOf="@+id/atacarBtn"
+        app:layout_constraintTop_toTopOf="@+id/atacarBtn" />
+
+    <Button
+        android:id="@+id/continuarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toEndOf="@+id/vidaJugadorMTV"
+        app:layout_constraintTop_toTopOf="@+id/vidaJugadorMTV"
+        app:layout_constraintVertical_bias="0.29000002" />
+
+    <ImageButton
+        android:id="@+id/pocionMonstruoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_round_bottom_flask_mini"
+        app:layout_constraintBottom_toBottomOf="@+id/defenderBtn"
+        app:layout_constraintEnd_toStartOf="@+id/atacarBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/atacarBtn" />
+
+    <TextView
+        android:id="@+id/pocionesMonstruoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pociones:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/nombreJugadorMTV"
+        app:layout_constraintEnd_toEndOf="@+id/pocionMonstruoBtn"
+        app:layout_constraintStart_toStartOf="@+id/pocionMonstruoBtn"
+        app:layout_constraintTop_toBottomOf="@+id/pocionMonstruoBtn"
+        app:layout_constraintVertical_bias="0.17000002" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

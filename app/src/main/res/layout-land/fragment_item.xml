@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JugadorFragment" >
+
+    <TextView
+        android:id="@+id/nombreItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/itemIV"
+        app:layout_constraintEnd_toEndOf="@+id/itemIV"
+        app:layout_constraintStart_toStartOf="@+id/itemIV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <ImageView
+        android:id="@+id/itemIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <TextView
+        android:id="@+id/nombreJugadorItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <TextView
+        android:id="@+id/armaItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arma:fdfdsfs"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintTop_toTopOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+    <TextView
+        android:id="@+id/armaduraItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Armadura: fdsdsf"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/armaItemTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/armaItemTV"
+        app:layout_constraintTop_toBottomOf="@+id/armaItemTV"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/pocionesItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pociones: gfgdf"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/armaduraItemTV"
+        app:layout_constraintTop_toBottomOf="@+id/armaduraItemTV"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <ProgressBar
+        android:id="@+id/vidaItemPB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintStart_toStartOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintTop_toBottomOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <TextView
+        android:id="@+id/vidaItemTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20/20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/vidaItemPB"
+        app:layout_constraintStart_toStartOf="@+id/vidaItemPB"
+        app:layout_constraintTop_toBottomOf="@+id/vidaItemPB"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/reemplazarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reemplazar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toEndOf="@+id/itemIV"
+        app:layout_constraintTop_toBottomOf="@+id/vidaItemTV"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <Button
+        android:id="@+id/dejarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dejar"
+        app:layout_constraintBottom_toBottomOf="@+id/reemplazarBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toEndOf="@+id/reemplazarBtn"
+        app:layout_constraintTop_toTopOf="@+id/reemplazarBtn"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
