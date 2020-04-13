@@ -2,6 +2,7 @@ package com.example.juego;
 
 import android.annotation.SuppressLint;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class JugadorFragment extends Fragment {
     Bundle extras;
     Button pocionBtn;
     int turno;
+    MediaPlayer mediaPlayer;
 
     public JugadorFragment() {
         // Required empty public constructor
@@ -79,6 +81,8 @@ public class JugadorFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     jugador.tomarPocion();
+                    mediaPlayer = MediaPlayer.create(getActivity(),R.raw.pocion);
+                    mediaPlayer.start();
                     actualizarInfo();
                     if (jugador.getPociones()<=0 || jugador.getVida()>=jugador.getVidaMaxima()){
                         pocionBtn.setEnabled(false);

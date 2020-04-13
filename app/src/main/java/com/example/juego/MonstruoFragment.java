@@ -135,6 +135,8 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 jugador.tomarPocion();
+                mediaPlayer = MediaPlayer.create(getActivity(),R.raw.pocion);
+                mediaPlayer.start();
                 vidaJugadorTV.setText(String.valueOf(jugador.getVida()));
                 pociones ="Pociones: " + jugador.getPociones();
                 pocionesMonstruoTV.setText(pociones);

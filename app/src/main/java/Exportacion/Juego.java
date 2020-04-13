@@ -33,7 +33,7 @@ public class Juego {
     static private int momentoDeRonda = 0;
     static public Toast toast = null;
     static public Bundle bundle = new Bundle();
-    static public MediaPlayer mediaPlayer;
+    static public MediaPlayer mediaPlayer = null;
     static public Bundle items = new Bundle();
     static public int turnoJugador;
 

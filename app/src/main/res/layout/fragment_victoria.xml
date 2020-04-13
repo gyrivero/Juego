@@ -5,15 +5,14 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MuertosFragment">
+    tools:context=".VictoriaFragment" >
 
     <TextView
-        android:id="@+id/muertosTV"
+        android:id="@+id/ganadorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Game Over!"
-        android:textAlignment="center"
-        android:textColor="#970303"
+        android:text="Felicitaciones!"
+        android:textColor="#182881"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,25 +20,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32" />
 
+    <TextView
+        android:id="@+id/nombreGanadorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gonzalo ha ganado!"
+        android:textColor="#182881"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ganadorTV"
+        app:layout_constraintStart_toStartOf="@+id/ganadorTV"
+        app:layout_constraintTop_toBottomOf="@+id/ganadorTV"
+        app:layout_constraintVertical_bias="0.04000002" />
+
     <Button
-        android:id="@+id/menuPrincipalBtn"
+        android:id="@+id/menuPrincipalGBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu Principal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/muertosTV"
-        app:layout_constraintVertical_bias="0.26999998" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreGanadorTV"
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <Button
-        android:id="@+id/salirBtn"
+        android:id="@+id/salirGBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salir"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuPrincipalBtn"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintEnd_toEndOf="@+id/menuPrincipalGBtn"
+        app:layout_constraintStart_toStartOf="@+id/menuPrincipalGBtn"
+        app:layout_constraintTop_toBottomOf="@+id/menuPrincipalGBtn"
+        app:layout_constraintVertical_bias="0.07" />
 </androidx.constraintlayout.widget.ConstraintLayout>

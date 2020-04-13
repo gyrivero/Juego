@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,8 +30,13 @@ public class MainActivity extends AppCompatActivity {
         nuevaPartidaBtn = findViewById(R.id.nuevoBtn);
         cargarPartidaBtn = findViewById(R.id.cargarBtn);
         tituloJuego = findViewById(R.id.juegoTV);
+        Juego.getJugadores().clear();
+        Juego.setCantidadJugadores(0);
         Juego.setRonda(1);
-        Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
+        Juego.turnoJugador = 0;
+        if (Juego.mediaPlayer==null) {
+            Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
+        }
         Juego.mediaPlayer.start();
         Juego.mediaPlayer.setLooping(true);
     }

@@ -14,17 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import Exportacion.Juego;
+import Exportacion.evaluadores.EvaluadorFinal;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MuertosFragment extends Fragment {
-    TextView muertosTV;
+public class VictoriaFragment extends Fragment {
+    TextView nombreGanadorTV;
     Button menuPBtn;
     Button salirBtn;
 
-    public MuertosFragment() {
+    public VictoriaFragment() {
         // Required empty public constructor
     }
 
@@ -33,22 +34,19 @@ public class MuertosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_muertos, container, false);
+        return inflater.inflate(R.layout.fragment_victoria, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        muertosTV = getView().findViewById(R.id.muertosTV);
-        menuPBtn = getView().findViewById(R.id.menuPrincipalBtn);
-        salirBtn = getView().findViewById(R.id.salirBtn);
+        nombreGanadorTV = getView().findViewById(R.id.nombreGanadorTV);
+        menuPBtn = getView().findViewById(R.id.menuPrincipalGBtn);
+        salirBtn = getView().findViewById(R.id.salirGBtn);
+        String nombreGanador = EvaluadorFinal.evaluarGanador(Juego.getJugadores()).get(0).getNombre() + " ha ganado!";
 
-        if (Juego.getCantidadJugadores()>1) {
-            muertosTV.setText("Todos los jugadores han muerto!");
-        }
-        else {
-            muertosTV.setText("Has muerto!");
-        }
+        nombreGanadorTV.setText(nombreGanador);
+
         Juego.getJugadores().clear();
 
         salirBtn.setOnClickListener(new View.OnClickListener() {

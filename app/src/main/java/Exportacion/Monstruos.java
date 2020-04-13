@@ -17,11 +17,11 @@ import Exportacion.objetos.Armas;
 
 
 public enum Monstruos {
-    GOBLIN(5, 5, 1, 4, "Goblin", R.drawable.ic_goblincolor, 1,R.raw.goblin),
-    LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo, 1,R.raw.lobo),
-    ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco, 1,R.raw.orco),
-    OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro, 1,R.raw.orco),
-    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon, 1,R.raw.orco);
+    GOBLIN(5, 5, 1, 4, "Goblin", R.drawable.ic_goblincolor, 1, R.raw.goblin2),
+    LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo, 1, R.raw.lobo),
+    ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco, 1, R.raw.orco),
+    OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro, 1, R.raw.ogre),
+    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon, 1, R.raw.dragon);
 
     private int vidaOriginal;
     private int vida;
@@ -94,7 +94,7 @@ public enum Monstruos {
         this.nombre = nombre;
     }
 
-    Monstruos(int vidaOriginal, int vida, int dañoMin, int dañoMax, String nombre, int imagen, int nivel,int raw) {
+    Monstruos(int vidaOriginal, int vida, int dañoMin, int dañoMax, String nombre, int imagen, int nivel, int raw) {
         this.vidaOriginal = vidaOriginal;
         this.vida = vida;
         this.dañoMin = dañoMin;
@@ -117,13 +117,13 @@ public enum Monstruos {
             if (jugador.getVida() < 0) {
                 jugador.setVida(0);
             }
-            if (!(Juego.toast ==null)) {
+            if (!(Juego.toast == null)) {
                 Juego.toast.cancel();
             }
             Juego.toast = Toast.makeText(activity.getApplicationContext(), "Recibes " + daño + " puntos de daño", Toast.LENGTH_SHORT);
             Juego.toast.show();
         } else {
-            if (!(Juego.toast ==null)) {
+            if (!(Juego.toast == null)) {
                 Juego.toast.cancel();
             }
             Juego.toast = Toast.makeText(activity.getApplicationContext(), "Esquivas el ataque", Toast.LENGTH_SHORT);
@@ -140,49 +140,169 @@ public enum Monstruos {
         int numero = dado.girar(1, 100);
         int opcion = dado.girar(1, 2);
         if (this.nombre.equals(Monstruos.GOBLIN.nombre)) {
-            return itemGoblin(numero,opcion);
-        }
-        else if (this.nombre.equals(Monstruos.LOBO.nombre)) {
-            return itemLobo(numero,opcion);
-        }
-        else if (this.nombre.equals(Monstruos.ORCO.nombre)) {
-            return itemOrco(numero,opcion);
+            return itemGoblin(numero, opcion);
+        } else if (this.nombre.equals(Monstruos.LOBO.nombre)) {
+            return itemLobo(numero, opcion);
+        } else if (this.nombre.equals(Monstruos.ORCO.nombre)) {
+            return itemOrco(numero, opcion);
+        } else if (this.nombre.equals(Monstruos.OGRO.nombre)) {
+            return itemOgro(numero, opcion);
+        } else if (this.nombre.equals(Monstruos.DRAGON.nombre)) {
+            return itemDragon(numero, opcion);
         }
         return bundle;
+    }
+
+    private Bundle itemDragon(int numero, int opcion) {
+        Bundle extras = new Bundle();
+        if (nivel == 1) {
+            if (numero >= 1 && numero < 35) {
+                extras.putInt("cantidad", 0);
+            } else if (numero >= 35 && numero < 72) {
+                if (opcion == 1) {
+                    extras.putString("item", Armas.ESPADA_DE_PLATA.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", Armaduras.ARMADURA_DE_PLACAS_COMPLETAS.name());
+                    extras.putInt("cantidad", 1);
+                }
+            } else if (numero >= 72 && numero < 92) {
+                if (opcion == 1) {
+                    extras.putString("item", Armaduras.ARMADURA_DE_ESCAMAS_DE_DRAGON.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", "Pocion");
+                    extras.putInt("cantidad", 5);
+                }
+            } else {
+                extras.putString("item", Armas.ESPADA_LEGENDARIA.name());
+                extras.putInt("cantidad", 1);
+            }
+        } else {
+            if (numero >= 1 && numero < 41) {
+                //No encontrar nada
+            } else if (numero >= 41 && numero < 82) {
+                if (opcion == 1) {
+                    //Encontrar una pocion
+                } else {
+                    //Encontrar una armadura de cuero
+                }
+            } else if (numero >= 82 && numero < 93) {
+                if (opcion == 1) {
+                    //Encontrar un Mandoble
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else if (numero >= 93 && numero < 97) {
+                if (opcion == 1) {
+                    //Encontrar una cota de mallas
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else {
+                if (opcion == 1) {
+                    //Encontrar una placas
+                } else {
+                    //Encontrar una espada de plata
+                }
+            }
+        }
+        return extras;
+    }
+
+    private Bundle itemOgro(int numero, int opcion) {
+        Bundle extras = new Bundle();
+        if (nivel == 1) {
+            if (numero >= 1 && numero < 35) {
+                extras.putInt("cantidad", 0);
+            } else if (numero >= 35 && numero < 82) {
+                if (opcion == 1) {
+                    extras.putString("item", Armas.MANDOBLE.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", Armaduras.COTA_DE_MALLAS.name());
+                    extras.putInt("cantidad", 1);
+                }
+            } else if (numero >= 82 && numero < 95) {
+                if (opcion == 1) {
+                    extras.putString("item", Armaduras.ARMADURA_DE_PLACAS_COMPLETAS.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", Armas.ESPADA_DE_PLATA.name());
+                    extras.putInt("cantidad", 1);
+                }
+            } else {
+                if (opcion == 1) {
+                    extras.putString("item", Armas.ESPADA_LEGENDARIA.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", "Pocion");
+                    extras.putInt("cantidad", 5);
+                }
+            }
+        } else {
+            if (numero >= 1 && numero < 41) {
+                //No encontrar nada
+            } else if (numero >= 41 && numero < 82) {
+                if (opcion == 1) {
+                    //Encontrar una pocion
+                } else {
+                    //Encontrar una armadura de cuero
+                }
+            } else if (numero >= 82 && numero < 93) {
+                if (opcion == 1) {
+                    //Encontrar un Mandoble
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else if (numero >= 93 && numero < 97) {
+                if (opcion == 1) {
+                    //Encontrar una cota de mallas
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else {
+                if (opcion == 1) {
+                    //Encontrar una placas
+                } else {
+                    //Encontrar una espada de plata
+                }
+            }
+        }
+        return extras;
     }
 
     private Bundle itemOrco(int numero, int opcion) {
         Bundle extras = new Bundle();
         if (nivel == 1) {
             if (numero >= 1 && numero < 41) {
-                extras.putInt("cantidad",0);
+                extras.putInt("cantidad", 0);
             } else if (numero >= 41 && numero < 82) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.MANDOBLE.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", Armaduras.ARMADURA_DE_CUERO.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 }
-            } else if (numero >= 82 && numero < 93) {
+            } else if (numero >= 82 && numero < 95) {
                 if (opcion == 1) {
                     extras.putString("item", Armaduras.COTA_DE_MALLAS.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", "Pocion");
                     extras.putInt("cantidad", 2);
                 }
             } else {
                 if (opcion == 1) {
-                    extras.putString("item", Armaduras.COTA_DE_MALLAS.name());
-                    extras.putInt("cantidad",1);
+                    extras.putString("item", Armaduras.ARMADURA_DE_PLACAS_COMPLETAS.name());
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", Armas.ESPADA_DE_PLATA.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 }
             }
-        }
-        else {
+        } else {
             if (numero >= 1 && numero < 41) {
                 //No encontrar nada
             } else if (numero >= 41 && numero < 82) {
@@ -218,19 +338,19 @@ public enum Monstruos {
         Bundle extras = new Bundle();
         if (nivel == 1) {
             if (numero >= 1 && numero < 41) {
-                extras.putInt("cantidad",0);
+                extras.putInt("cantidad", 0);
             } else if (numero >= 41 && numero < 82) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.ESPADA.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", Armaduras.ARMADURA_DE_CUERO.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 }
             } else if (numero >= 82 && numero < 93) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.ESPADA.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", "Pocion");
                     extras.putInt("cantidad", 2);
@@ -244,8 +364,7 @@ public enum Monstruos {
                     extras.putInt("cantidad", 2);
                 }
             }
-        }
-        else {
+        } else {
             if (numero >= 1 && numero < 41) {
                 //No encontrar nada
             } else if (numero >= 41 && numero < 82) {
@@ -281,22 +400,22 @@ public enum Monstruos {
         Bundle extras = new Bundle();
         if (nivel == 1) {
             if (numero >= 1 && numero < 41) {
-                extras.putInt("cantidad",0);
+                extras.putInt("cantidad", 0);
             } else if (numero >= 41 && numero < 88) {
                 if (opcion == 1) {
-                    extras.putString("item",Armas.DAGA.name());
-                    extras.putInt("cantidad",1);
+                    extras.putString("item", Armas.DAGA.name());
+                    extras.putInt("cantidad", 1);
                 } else {
-                    extras.putString("item","Pocion");
-                    extras.putInt("cantidad",1);
+                    extras.putString("item", "Pocion");
+                    extras.putInt("cantidad", 1);
                 }
             } else if (numero >= 88 && numero < 98) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.ESPADA.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", Armaduras.ARMADURA_DE_CUERO.name());
-                    extras.putInt("cantidad",1);
+                    extras.putInt("cantidad", 1);
                 }
             } else {
                 if (opcion == 1) {
@@ -307,8 +426,7 @@ public enum Monstruos {
                     extras.putInt("cantidad", 1);
                 }
             }
-        }
-        else {
+        } else {
             if (numero >= 1 && numero < 41) {
                 //No encontrar nada
             } else if (numero >= 41 && numero < 72) {
