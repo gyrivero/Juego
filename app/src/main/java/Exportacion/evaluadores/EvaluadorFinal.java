@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EvaluadorGanador {
+public class EvaluadorFinal {
 
     static private List<Jugador> listaAuxiliar;
     static private boolean muertos = false;
@@ -20,14 +20,20 @@ public class EvaluadorGanador {
         return ganadores;
     }
    
-    static public boolean evaluar(List<Jugador> evaluadores) {
+    static public boolean evaluar(List<Jugador> evaluadores,int opcion) {
+        if (opcion==1) {
+            if (evaluadores.isEmpty()) {
+                return true;
+            }
+            return false;
+        }
         if (evaluadores.isEmpty()) {
             return false;
         }
         return true;
     }
 
-    static public List evaluarGanador(List<Jugador> evaluadores) {
+    static public List<Jugador> evaluarGanador(List<Jugador> evaluadores) {
         listaAuxiliar = evaluadores.stream()
                 .filter(z -> z.getPosicion() >= Tablero.getCasillaFinal())
                 .filter(z -> z.getVida()>0)
@@ -43,7 +49,7 @@ public class EvaluadorGanador {
     static public List evaluarMuertos(List<Jugador> evaluadores) {
         List<Jugador> listaAuxiliar2;
         listaAuxiliar2 = evaluadores.stream()
-                .filter(z -> z.getVida()<=0)
+                .filter(z -> z.getVida()>0)
                 .collect(Collectors.toList());
 
         return listaAuxiliar2;
@@ -61,5 +67,9 @@ public class EvaluadorGanador {
         if (opt2) {
             System.out.println("Estan todos muertos");
         }
+    }
+
+    static public void evaluarFinalGanador() {
+
     }
 }

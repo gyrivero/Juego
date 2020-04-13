@@ -2,22 +2,17 @@ package com.example.juego;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
-import android.content.ClipData;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +25,7 @@ import android.widget.Toast;
 import Exportacion.Juego;
 import Exportacion.Jugador;
 import Exportacion.Monstruos;
+import Exportacion.evaluadores.EvaluadorFinal;
 
 
 /**
@@ -53,6 +49,7 @@ public class MonstruoFragment extends Fragment {
     AlertDialog.Builder builder;
     MediaPlayer mediaPlayer;
     String pociones;
+    FragmentManager turnoFragM;
 
     public MonstruoFragment() {
         // Required empty public constructor
@@ -89,6 +86,7 @@ public class MonstruoFragment extends Fragment {
         continuarBtn = getView().findViewById(R.id.continuarBtn);
         pocionBtn = getView().findViewById(R.id.pocionMonstruoBtn);
         pocionesMonstruoTV = getView().findViewById(R.id.pocionesMonstruoTV);
+        turnoFragM = getFragmentManager();
 
         if (Juego.bundle.containsKey("defender")) {
             defenderBtn.setEnabled(Juego.bundle.getBoolean("defender"));
@@ -107,7 +105,7 @@ public class MonstruoFragment extends Fragment {
 
         extras = getArguments();
         Monstruos monstruo = Monstruos.valueOf(extras.getString("monstruo"));
-        Jugador jugador = Juego.getJugadores().get(extras.getInt("jugador"));
+        Jugador jugador = Juego.getJugadores().get(Juego.turnoJugador);
         pociones ="Pociones: " + jugador.getPociones();
         mediaPlayer = MediaPlayer.create(getActivity(),monstruo.getRaw());
         mediaPlayer.start();
@@ -157,28 +155,7 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Juego.bundle.clear();
-                int turno = ((JuegoActivity)getActivity()).turnoJugador;
-                int vida = 0;
-                int i = 0;
-                while (vida<= 0)
-                {
-                    i+=1;
-                    if (i>Juego.getCantidadJugadores()){
-                        break;
-                    }
-                    turno+=1;
-                    if (turno>Juego.getJugadores().size()-1) {
-                        Juego.setRonda(Juego.getRonda()+1);
-                        turno = 0;
-                    }
-                    vida = Juego.getJugadores().get(turno).getVida();
-                }
-                if (i>Juego.getCantidadJugadores()){
-                    Toast.makeText(getActivity().getApplicationContext(),"Se termino el juego",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                ((JuegoActivity)getActivity()).turnoJugador = turno;
-                getFragmentManager().beginTransaction().replace(R.id.contenedor,new JugadorFragment()).commit();
+                Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
 
@@ -204,7 +181,7 @@ public class MonstruoFragment extends Fragment {
                     if (!(Juego.toast ==null)) {
                         Juego.toast.cancel();
                     }
-                    Juego.toast.makeText(getActivity().getApplicationContext(),"Has muerto!",Toast.LENGTH_LONG);
+                    Juego.toast = Toast.makeText(getActivity().getApplicationContext(),"Has muerto!",Toast.LENGTH_LONG);
                     Juego.toast.show();
                     continuarBtn.setEnabled(true);
                     defenderBtn.setEnabled(false);
@@ -242,7 +219,7 @@ public class MonstruoFragment extends Fragment {
                         if (!(Juego.toast ==null)) {
                             Juego.toast.cancel();
                         }
-                        Juego.toast.makeText(getActivity().getApplicationContext(),"El monstruo no ha dejado ningun item!",Toast.LENGTH_LONG);
+                        Juego.toast = Toast.makeText(getActivity().getApplicationContext(),"El monstruo no ha dejado ningun item!",Toast.LENGTH_LONG);
                         Juego.toast.show();
                         continuarBtn.setEnabled(true);
                     }

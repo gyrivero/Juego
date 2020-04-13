@@ -1,37 +1,22 @@
 package com.example.juego;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.pm.ActivityInfo;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import Exportacion.Juego;
 import Exportacion.Jugador;
-import Exportacion.Monstruos;
-import Exportacion.evaluadores.EvaluadorGanador;
 
 public class JuegoActivity extends AppCompatActivity {
     Fragment frag;
     Button iniciarBtn;
-    int turnoJugador = 0;
-    Jugador jugador = Juego.getJugadores().get(turnoJugador);
     FragmentManager fragManag;
 
     @Override
@@ -57,25 +42,16 @@ public class JuegoActivity extends AppCompatActivity {
         Juego.mediaPlayer.stop();
     }
 
-    /*public void tirarDado(View view) {
-
-    }*/
-
-    public void actualizarInfo() {
-        jugador = Juego.getJugadores().get(turnoJugador);
-        String posicion = "Posicion: " + jugador.getPosicion();
-        String pociones = "Pociones: " + jugador.getPociones();
-        String arma = "Arma: " + jugador.getArma().getNombre();
-        String armadura = "Armadura: " + jugador.getArmadura().getNombre();
-        String vida = jugador.getVida() + "/" + jugador.getVidaMaxima();
-        ((TextView) frag.getView().findViewById(R.id.nombreJugadorTV)).setText(jugador.getNombre());
-        ((ProgressBar)frag.getView().findViewById(R.id.vidaPB)).setMax(jugador.getVidaMaxima());
-        ((ProgressBar)frag.getView().findViewById(R.id.vidaPB)).setProgress(jugador.getVida());
-        ((TextView) frag.getView().findViewById(R.id.posicionTV)).setText(posicion);
-        ((ImageView)frag.getView().findViewById(R.id.personajeIV)).setImageDrawable(jugador.getImage());
-        ((TextView) frag.getView().findViewById(R.id.pocionesTV)).setText(pociones);
-        ((TextView) frag.getView().findViewById(R.id.armaduraTV)).setText(armadura);
-        ((TextView) frag.getView().findViewById(R.id.armaTV)).setText(arma);
-        ((TextView) frag.getView().findViewById(R.id.vidaTV)).setText(vida);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Juego.mediaPlayer.pause();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Juego.mediaPlayer.start();
+    }
+
 }

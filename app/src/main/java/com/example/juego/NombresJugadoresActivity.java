@@ -87,4 +87,16 @@ public class NombresJugadoresActivity extends AppCompatActivity {
             return null;
         }
     };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Juego.mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Juego.mediaPlayer.start();
+    }
 }

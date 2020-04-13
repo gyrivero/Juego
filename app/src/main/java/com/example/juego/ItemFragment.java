@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class ItemFragment extends Fragment {
     int turno;
     Armas armaJugador;
     Armaduras armaduraJugador;
-    Boolean configChanged = false;
+    FragmentManager turnoFragM;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -70,7 +71,8 @@ public class ItemFragment extends Fragment {
         tomarBtn = getView().findViewById(R.id.reemplazarBtn);
         dejarBtn = getView().findViewById(R.id.dejarBtn);
         extras = getArguments();
-        turno = ((JuegoActivity)getActivity()).turnoJugador;
+        turno = Juego.turnoJugador;
+        turnoFragM = getFragmentManager();
         Jugador jugador = Juego.getJugadores().get(turno);
 
         String pociones = "Pociones: " + jugador.getPociones();
@@ -97,56 +99,14 @@ public class ItemFragment extends Fragment {
                 else {
                     jugador.setPociones(extras.getInt("cantidad"));
                 }
-                int turno = ((JuegoActivity)getActivity()).turnoJugador;
-                int vida = 0;
-                int i = 0;
-                while (vida<= 0)
-                {
-                    i+=1;
-                    if (i>Juego.getCantidadJugadores()){
-                        break;
-                    }
-                    turno+=1;
-                    if (turno>Juego.getJugadores().size()-1) {
-                        Juego.setRonda(Juego.getRonda()+1);
-                        turno = 0;
-                    }
-                    vida = Juego.getJugadores().get(turno).getVida();
-                }
-                if (i>Juego.getCantidadJugadores()){
-                    //Se termino el juego
-                    return;
-                }
-                ((JuegoActivity)getActivity()).turnoJugador = turno;
-                getFragmentManager().beginTransaction().replace(R.id.contenedor,new JugadorFragment()).commit();
+                Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
 
         dejarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int turno = ((JuegoActivity)getActivity()).turnoJugador;
-                int vida = 0;
-                int i = 0;
-                while (vida<= 0)
-                {
-                    i+=1;
-                    if (i>Juego.getCantidadJugadores()){
-                        break;
-                    }
-                    turno+=1;
-                    if (turno>Juego.getJugadores().size()-1) {
-                        Juego.setRonda(Juego.getRonda()+1);
-                        turno = 0;
-                    }
-                    vida = Juego.getJugadores().get(turno).getVida();
-                }
-                if (i>Juego.getCantidadJugadores()){
-                    //Se termino el juego
-                    return;
-                }
-                ((JuegoActivity)getActivity()).turnoJugador = turno;
-                getFragmentManager().beginTransaction().replace(R.id.contenedor,new JugadorFragment()).commit();
+                Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
 

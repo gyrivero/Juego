@@ -210,7 +210,6 @@ public class Tablero {
         Fragment frag = new MonstruoFragment();
         Bundle bundle = new Bundle();
         bundle.putString("monstruo", monstruo.name());
-        bundle.putInt("jugador",jugador.getIdentificacion());
         frag.setArguments(bundle);
         fragManag.beginTransaction().replace(R.id.contenedor, frag).commit();
     }

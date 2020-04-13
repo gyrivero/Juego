@@ -64,7 +64,14 @@ public class Jugador {
             posicion = Tablero.getCasillaFinal();
         }
         tablero.activarCasilla(posicion,this,activity, fragmentManager);
-        Toast.makeText(activity.getApplicationContext(),"Sacaste: " + resultado,Toast.LENGTH_LONG).show();
+        if (!(Juego.toast ==null)) {
+            Juego.toast.cancel();
+        }
+        if (!(Juego.toast ==null)) {
+            Juego.toast.cancel();
+        }
+        Juego.toast = Toast.makeText(activity.getApplicationContext(),"Sacaste: " + resultado,Toast.LENGTH_LONG);
+        Juego.toast.show();
     }
 
     public void atacar(Monstruos monstruo, Activity activity) {

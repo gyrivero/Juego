@@ -48,4 +48,16 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         Juego.mediaPlayer.stop();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Juego.mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Juego.mediaPlayer.start();
+    }
 }

@@ -68,7 +68,7 @@ public class JugadorFragment extends Fragment {
         pocionBtn = getView().findViewById(R.id.pocionBtn);
         FragmentManager fragmentManager = getFragmentManager();
 
-        turno = ((JuegoActivity) getActivity()).turnoJugador;
+        turno = Juego.turnoJugador;
         jugador = Juego.getJugadores().get(turno);
 
         pocionBtn.setEnabled(false);

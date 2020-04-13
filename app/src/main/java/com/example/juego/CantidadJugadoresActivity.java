@@ -58,4 +58,16 @@ public class CantidadJugadoresActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Juego.mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Juego.mediaPlayer.start();
+    }
 }

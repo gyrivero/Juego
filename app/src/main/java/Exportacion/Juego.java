@@ -2,17 +2,25 @@ package Exportacion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.juego.FinalActivity;
+import com.example.juego.JuegoActivity;
+import com.example.juego.JugadorFragment;
+import com.example.juego.R;
 import com.mycompany.juegotablero.evaluadores.EvaluadorPreguntas;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Exportacion.evaluadores.EvaluadorFinal;
 import lombok.Data;
 
 public class Juego {
@@ -27,6 +35,7 @@ public class Juego {
     static public Bundle bundle = new Bundle();
     static public MediaPlayer mediaPlayer;
     static public Bundle items = new Bundle();
+    static public int turnoJugador;
 
     public static List<Jugador> getJugadores() {
         return jugadores;
@@ -169,6 +178,52 @@ public class Juego {
         System.out.println("Presione enter para salir.");
         EvaluadorPreguntas.esperarTecla();
         
+    }
+
+    static public void cambiarTurno(Activity activity, FragmentManager fragmentManager) {
+        int vida;
+        if (EvaluadorFinal.evaluar(EvaluadorFinal.evaluarMuertos(jugadores),1)) {
+            if (!(toast ==null)) {
+                toast.cancel();
+            }
+            toast = Toast.makeText(activity.getApplicationContext(),"Se termino el juego",Toast.LENGTH_LONG);
+            toast.show();
+            Intent intent = new Intent(activity, FinalActivity.class);
+            activity.startActivity(intent);
+            activity.finish();
+            return;
+        }
+        do {
+            if (cambioRonda(turnoJugador)) {
+                if (EvaluadorFinal.evaluar(EvaluadorFinal.evaluarGanador(jugadores),2)) {
+                    Jugador ganador = EvaluadorFinal.evaluarGanador(jugadores).get(0);
+                    if (!(toast ==null)) {
+                        toast.cancel();
+                    }
+                    toast = Toast.makeText(activity.getApplicationContext(),"Gano el jugador: " + ganador.getNombre(),Toast.LENGTH_LONG);
+                    toast.show();
+                    Intent intent = new Intent(activity, FinalActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
+                    return;
+                }
+                turnoJugador = 0;
+            }
+            else {
+                turnoJugador+=1;
+            }
+            vida = jugadores.get(turnoJugador).getVida();
+        }
+        while (vida<= 0);
+        fragmentManager.beginTransaction().replace(R.id.contenedor,new JugadorFragment()).commit();
+    }
+
+    static public boolean cambioRonda(int turno) {
+        if (turno+1>Juego.getJugadores().size()-1) {
+            Juego.setRonda(Juego.getRonda()+1);
+            return true;
+        }
+        return false;
     }
 
 }
