@@ -50,6 +50,7 @@ public class MonstruoFragment extends Fragment {
     MediaPlayer mediaPlayer;
     String pociones;
     FragmentManager turnoFragM;
+    TextView posicionJugadorMTV;
 
     public MonstruoFragment() {
         // Required empty public constructor
@@ -87,6 +88,7 @@ public class MonstruoFragment extends Fragment {
         pocionBtn = getView().findViewById(R.id.pocionMonstruoBtn);
         pocionesMonstruoTV = getView().findViewById(R.id.pocionesMonstruoTV);
         turnoFragM = getFragmentManager();
+        posicionJugadorMTV = getView().findViewById(R.id.posicionJugadorMTV);
 
         if (Juego.bundle.containsKey("defender")) {
             defenderBtn.setEnabled(Juego.bundle.getBoolean("defender"));
@@ -106,6 +108,8 @@ public class MonstruoFragment extends Fragment {
         extras = getArguments();
         Monstruos monstruo = Monstruos.valueOf(extras.getString("monstruo"));
         Jugador jugador = Juego.getJugadores().get(Juego.turnoJugador);
+        String posicion = "Posicion: " + jugador.getPosicion();
+        posicionJugadorMTV.setText(posicion);
         pociones ="Pociones: " + jugador.getPociones();
         mediaPlayer = MediaPlayer.create(getActivity(),monstruo.getRaw());
         mediaPlayer.start();
@@ -142,14 +146,8 @@ public class MonstruoFragment extends Fragment {
                 pocionesMonstruoTV.setText(pociones);
                 defenderBtn.setEnabled(true);
                 atacarBtn.setEnabled(false);
-                if (jugador.getPociones() > 0 && jugador.getVida() < jugador.getVidaMaxima()) {
-                    pocionBtn.setEnabled(true);
-                    pocionBtn.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.colorPrimary, null), PorterDuff.Mode.SRC_IN));
-                }
-                else {
-                    pocionBtn.clearColorFilter();
-                    pocionBtn.setEnabled(false);
-                }
+                pocionBtn.clearColorFilter();
+                pocionBtn.setEnabled(false);
             }
         });
 
@@ -157,6 +155,7 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Juego.bundle.clear();
+                mediaPlayer.release();
                 Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
@@ -206,6 +205,7 @@ public class MonstruoFragment extends Fragment {
                 vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
                 mediaPlayer = MediaPlayer.create(getActivity(),R.raw.swing);
                 mediaPlayer.start();
+                pocionBtn.clearColorFilter();
                 if (monstruo.getVida()>0){
                     defenderBtn.setEnabled(true);
                 }

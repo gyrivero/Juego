@@ -36,6 +36,9 @@ public class Juego {
     static public MediaPlayer mediaPlayer = null;
     static public Bundle items = new Bundle();
     static public int turnoJugador;
+    static public boolean volverAJugar = false;
+    static public int casillaAlcanzada = 0;
+    static public String nombreRecord = "";
 
     public static List<Jugador> getJugadores() {
         return jugadores;
@@ -77,40 +80,6 @@ public class Juego {
         Juego.momentoDeRonda = momentoDeRonda;
     }
 
-    static public void bienvenida() {
-        cantidadJugadores = EvaluadorPreguntas.preguntarCantidadJugadores();
-        if (cantidadJugadores>1) {
-            System.out.println("Bienvenidos al juego");
-        }
-        else
-        {
-            System.out.println("Bienvenido al juego");
-        }
-    }
-
-    public void crearJugadores() {        
-        for (int i = 0; i < cantidadJugadores; i++) {
-            System.out.println("\nJugador Nª: " + (i+1));
-        }
-    }
-
-    public void ronda() {      
-        System.out.println("Comienza la ronda N°" + ronda);
-        for (Jugador j : jugadores) {
-            if (j.getIdentificacion() == momentoDeRonda) {
-                if (j.getVida()>0) {
-                System.out.println("\nTurno de: " + j.getNombre() + ".\n--");
-                EvaluadorPreguntas.esperarTecla();
-                System.out.println("---------------------------");
-                faseEmboscada(j,jugadores);
-                }
-                momentoDeRonda += 1;                
-            }            
-        }
-        momentoDeRonda = 1;
-        ronda +=1;
-    }
-
     private void faseEmboscada(Jugador j, List<Jugador> jugadores) {
         for (Jugador jugador:jugadores) {
             if (!jugador.equals(j) && j.getPosicion()==jugador.getPosicion() && jugador.getVida()>0 && j.getVida()>0){
@@ -119,75 +88,9 @@ public class Juego {
         }
     }
 
-    static void faseAtaque(Jugador j, Monstruos monstruo, Activity activity) {
-        System.out.println();
-        while(j.getVida()>0) {
-            if (j.getVida()<j.vidaMaxima && j.getPociones()>0) {
-                System.out.println("Queres tomar una pocion? Si lo haces, no podras atacar.");
-                if (EvaluadorPreguntas.preguntarSiNo()) {
-                    j.tomarPocion();
-                }
-                else {
-                    j.atacar(monstruo,activity);
-                }
-            }
-            else {
-                j.atacar(monstruo,activity);
-            }
-            if (monstruo.getVida()<= 0)
-            {
-                System.out.println("Has derrotado al " + monstruo.getNombre() + ".");
-                break;
-            }
-        }
-    }
-
-    public void fasePrimera(Jugador j, Activity context, FragmentManager fragmentManager){
-        boolean dadoLanzado = false;
-        int accion;
-        while (!dadoLanzado) {
-            accion = EvaluadorPreguntas.elegirAccion();
-            switch (accion) {
-                case 1:
-                    j.revisarEstadisticas();
-                    break;
-                case 2:
-                    j.tomarPocion();
-                    break;
-                case 4:
-                    finalizar(true);                    
-                case 5:
-                    dadoLanzado=true;
-                    j.moverse(tablero, context,fragmentManager);
-                    break;
-                default:
-                    System.out.println("Opcion incorrecta.");
-                    break;
-            }
-        }
-    }
-
-    public void finalizar(boolean salir) {
-        if (salir) {            
-            System.out.println("\nSales del juego!");            
-            System.exit(0);
-        }
-        else {
-            System.out.println("El juego ha terminado!");
-        }        
-        System.out.println("Presione enter para salir.");
-        EvaluadorPreguntas.esperarTecla();
-        
-    }
-
     static public void cambiarTurno(Activity activity, FragmentManager fragmentManager) {
         int vida;
         if (EvaluadorFinal.evaluar(EvaluadorFinal.evaluarMuertos(jugadores),1)) {
-            if (!(toast ==null)) {
-                toast.cancel();
-            }
-            toast = Toast.makeText(activity.getApplicationContext(),"Se termino el juego",Toast.LENGTH_LONG);
-            toast.show();
             Intent intent = new Intent(activity, FinalActivity.class);
             activity.startActivity(intent);
             activity.finish();

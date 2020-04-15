@@ -18,7 +18,7 @@ import Exportacion.objetos.Armaduras;
 import Exportacion.objetos.Armas;
 
 public class Tablero {
-    private static int casillaFinal = 10;
+    private static int casillaFinal = 19;
     private boolean hayMonstruo = false;
     private Monstruos monstruo;
     private Dado dado = new Dado();

@@ -13,8 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 import Exportacion.Juego;
+import Exportacion.Jugador;
 import Exportacion.evaluadores.EvaluadorFinal;
+import Exportacion.objetos.Armaduras;
+import Exportacion.objetos.Armas;
 
 
 /**
@@ -24,6 +29,8 @@ public class VictoriaFragment extends Fragment {
     TextView nombreGanadorTV;
     Button menuPBtn;
     Button salirBtn;
+    Button volverJugarBtn;
+    List<Jugador> jugadoresList;
 
     public VictoriaFragment() {
         // Required empty public constructor
@@ -43,15 +50,29 @@ public class VictoriaFragment extends Fragment {
         nombreGanadorTV = getView().findViewById(R.id.nombreGanadorTV);
         menuPBtn = getView().findViewById(R.id.menuPrincipalGBtn);
         salirBtn = getView().findViewById(R.id.salirGBtn);
+        volverJugarBtn = getView().findViewById(R.id.volverAJugarVBtn);
         String nombreGanador = EvaluadorFinal.evaluarGanador(Juego.getJugadores()).get(0).getNombre() + " ha ganado!";
 
         nombreGanadorTV.setText(nombreGanador);
 
-        Juego.getJugadores().clear();
+        volverJugarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Juego.volverAJugar=true;
+                reiniciarJugadores();
+                Juego.setRonda(1);
+                ((FinalActivity)getActivity()).mediaPlayerFinal.release();
+                Intent intent = new Intent(getActivity(), JuegoActivity.class);
+                getFragmentManager().beginTransaction().replace(R.id.contenedor,new InicioFragment());
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         salirBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((FinalActivity)getActivity()).mediaPlayerFinal.release();
                 getActivity().onBackPressed();
             }
         });
@@ -59,10 +80,21 @@ public class VictoriaFragment extends Fragment {
         menuPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((FinalActivity)getActivity()).mediaPlayerFinal.release();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         });
+    }
+
+    private void reiniciarJugadores() {
+        for (Jugador j:Juego.getJugadores()) {
+            j.setPociones(0);
+            j.setArmadura(Armaduras.ROPA);
+            j.setArma(Armas.PUÑOS);
+            j.setVida(j.getVidaMaxima());
+            j.setPosicion(0);
+        }
     }
 }

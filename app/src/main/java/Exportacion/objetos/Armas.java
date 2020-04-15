@@ -3,8 +3,8 @@ package Exportacion.objetos;
 import com.example.juego.R;
 
 public enum Armas {
-    PUÑOS("Puños",0,3, R.drawable.ic_fist,R.drawable.ic_fist_land),
-    DAGA("Daga",1,4,R.drawable.ic_daga,R.drawable.ic_daga_land),
+    PUÑOS("Puños",1,3, R.drawable.ic_fist,R.drawable.ic_fist_land),
+    DAGA("Daga",2,4,R.drawable.ic_daga,R.drawable.ic_daga_land),
     ESPADA("Espada",3,6,R.drawable.ic_sword,R.drawable.ic_sword_land),
     MANDOBLE("Mandoble",5,8,R.drawable.ic_two_handed_sword,R.drawable.ic_two_handed_sword_land),
     ESPADA_DE_PLATA("Espada de Plata",8,10,R.drawable.ic_plata,R.drawable.ic_plata_land),

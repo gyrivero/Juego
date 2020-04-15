@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ public class JuegoActivity extends AppCompatActivity {
     Fragment frag;
     Button iniciarBtn;
     FragmentManager fragManag;
+    Boolean pause = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,14 @@ public class JuegoActivity extends AppCompatActivity {
         fragManag = getSupportFragmentManager();
         if (null == savedInstanceState) {
             fragManag.beginTransaction().add(R.id.contenedor, new InicioFragment()).commit();
+        }
+
+        if (Juego.volverAJugar) {
+            Log.i("Juego", "onCreate: ");
+            Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
+            Juego.mediaPlayer.start();
+            Juego.mediaPlayer.setLooping(true);
+            Juego.volverAJugar=false;
         }
     }
 
@@ -47,12 +57,17 @@ public class JuegoActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Juego.mediaPlayer.pause();
+        pause = true;
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Juego.mediaPlayer.start();
+        if (pause||!Juego.volverAJugar) {
+            Juego.mediaPlayer.start();
+            pause=false;
+        }
     }
 
 }

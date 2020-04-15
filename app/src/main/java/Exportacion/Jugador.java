@@ -20,7 +20,7 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 public class Jugador {
-    final int vidaMaxima = 20;
+    final int vidaMaxima = 25;
     private String nombre;
     private int vida;
     private Dado dado = new Dado();
@@ -42,15 +42,8 @@ public class Jugador {
         this.image = image;
     }
 
-    public void revisarEstadisticas() {
-        System.out.println("Arma: " + arma.getNombre() + " (" + arma.getMin() + "-" + arma.getMax() + ")" + " - Armadura: " + armadura.getNombre() + " (" + armadura.getDefensa() + ")" + " - Pociones: " + pociones + ".");
-        System.out.println("Vida: " + vida + ".");
-        System.out.println("Posicion: " + posicion + ".");
-        System.out.println();
-    }
-
     public void tomarPocion() {
-        vida += 5;
+        vida += 7;
         pociones -= 1;
         if (vida > vidaMaxima) {
             vida = vidaMaxima;

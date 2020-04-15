@@ -97,7 +97,7 @@ public class ItemFragment extends Fragment {
                     jugador.setArmadura(armaduraJugador);
                 }
                 else {
-                    jugador.setPociones(extras.getInt("cantidad"));
+                    jugador.setPociones(jugador.getPociones()+extras.getInt("cantidad"));
                 }
                 Juego.cambiarTurno(getActivity(),turnoFragM);
             }

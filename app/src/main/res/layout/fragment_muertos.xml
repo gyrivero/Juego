@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/muertosTV"
-        app:layout_constraintVertical_bias="0.26999998" />
+        app:layout_constraintVertical_bias="0.37" />
 
     <Button
         android:id="@+id/salirBtn"
@@ -42,4 +42,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menuPrincipalBtn"
         app:layout_constraintVertical_bias="0.07999998" />
+
+    <Button
+        android:id="@+id/volverAJugarMBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver a Jugar"
+        app:layout_constraintBottom_toTopOf="@+id/menuPrincipalBtn"
+        app:layout_constraintEnd_toEndOf="@+id/muertosTV"
+        app:layout_constraintStart_toStartOf="@+id/muertosTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
+    <TextView
+        android:id="@+id/casillaAlcanzadaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="350dp"
+        android:text="Lo mas lejos que llegaste es:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <TextView
+        android:id="@+id/casillaFinalTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="350dp"
+        android:text="Terminaste en la casilla:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/muertosTV"
+        app:layout_constraintEnd_toEndOf="@+id/casillaAlcanzadaTV"
+        app:layout_constraintStart_toStartOf="@+id/casillaAlcanzadaTV"
+        app:layout_constraintTop_toBottomOf="@+id/casillaAlcanzadaTV"
+        app:layout_constraintVertical_bias="0.25" />
 </androidx.constraintlayout.widget.ConstraintLayout>

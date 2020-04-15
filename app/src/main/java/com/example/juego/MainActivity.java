@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         Juego.setCantidadJugadores(0);
         Juego.setRonda(1);
         Juego.turnoJugador = 0;
-        if (Juego.mediaPlayer==null) {
-            Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
-        }
+        Juego.casillaAlcanzada = 0;
+        Juego.nombreRecord = "";
+        Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
         Juego.mediaPlayer.start();
         Juego.mediaPlayer.setLooping(true);
+
     }
 
     public void nuevo(View view) {

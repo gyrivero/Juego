@@ -17,16 +17,12 @@ public class FinalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
-        Juego.mediaPlayer.stop();
-        Juego.mediaPlayer = null;
         if (EvaluadorFinal.evaluar(EvaluadorFinal.evaluarMuertos(Juego.getJugadores()),1)){
-            mediaPlayerFinal = MediaPlayer.create(this,R.raw.lose);
-            mediaPlayerFinal.start();
+            playMusic(R.raw.lose);
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new MuertosFragment()).commit();
         }
         else {
-            mediaPlayerFinal = MediaPlayer.create(this,R.raw.win);
-            mediaPlayerFinal.start();
+            playMusic(R.raw.win);
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, new VictoriaFragment()).commit();
         }
     }
@@ -34,7 +30,13 @@ public class FinalActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Juego.mediaPlayer.stop();
+        Juego.mediaPlayer.release();
         Juego.getJugadores().clear();
+    }
+
+    public void playMusic(int id) {
+        Juego.mediaPlayer.release();
+        mediaPlayerFinal = MediaPlayer.create(this,id);
+        mediaPlayerFinal.start();
     }
 }

@@ -17,7 +17,7 @@ import Exportacion.objetos.Armas;
 
 
 public enum Monstruos {
-    GOBLIN(5, 5, 1, 4, "Goblin", R.drawable.ic_goblincolor, 1, R.raw.goblin2),
+    GOBLIN(5, 5, 1, 3, "Goblin", R.drawable.ic_goblincolor, 1, R.raw.goblin2),
     LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo, 1, R.raw.lobo),
     ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco, 1, R.raw.orco),
     OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro, 1, R.raw.ogre),
@@ -337,9 +337,9 @@ public enum Monstruos {
     private Bundle itemLobo(int numero, int opcion) {
         Bundle extras = new Bundle();
         if (nivel == 1) {
-            if (numero >= 1 && numero < 41) {
+            if (numero >= 1 && numero < 35) {
                 extras.putInt("cantidad", 0);
-            } else if (numero >= 41 && numero < 82) {
+            } else if (numero >= 35 && numero < 75){
                 if (opcion == 1) {
                     extras.putString("item", Armas.ESPADA.name());
                     extras.putInt("cantidad", 1);
@@ -347,9 +347,9 @@ public enum Monstruos {
                     extras.putString("item", Armaduras.ARMADURA_DE_CUERO.name());
                     extras.putInt("cantidad", 1);
                 }
-            } else if (numero >= 82 && numero < 93) {
+            } else if (numero >= 75 && numero < 93) {
                 if (opcion == 1) {
-                    extras.putString("item", Armas.ESPADA.name());
+                    extras.putString("item", Armaduras.COTA_DE_MALLAS.name());
                     extras.putInt("cantidad", 1);
                 } else {
                     extras.putString("item", "Pocion");
@@ -401,7 +401,7 @@ public enum Monstruos {
         if (nivel == 1) {
             if (numero >= 1 && numero < 41) {
                 extras.putInt("cantidad", 0);
-            } else if (numero >= 41 && numero < 88) {
+            } else if (numero >= 41 && numero < 81) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.DAGA.name());
                     extras.putInt("cantidad", 1);
@@ -409,7 +409,7 @@ public enum Monstruos {
                     extras.putString("item", "Pocion");
                     extras.putInt("cantidad", 1);
                 }
-            } else if (numero >= 88 && numero < 98) {
+            } else if (numero >= 81 && numero < 98) {
                 if (opcion == 1) {
                     extras.putString("item", Armas.ESPADA.name());
                     extras.putInt("cantidad", 1);
