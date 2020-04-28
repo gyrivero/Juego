@@ -71,7 +71,7 @@ public class ItemFragment extends Fragment {
         tomarBtn = getView().findViewById(R.id.reemplazarBtn);
         dejarBtn = getView().findViewById(R.id.dejarBtn);
         extras = getArguments();
-        turno = Juego.turnoJugador;
+        turno = Juego.getTurnoJugador();
         turnoFragM = getFragmentManager();
         Jugador jugador = Juego.getJugadores().get(turno);
 

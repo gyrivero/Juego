@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CascadaFragment" >
+
+    <TextView
+        android:id="@+id/cascadaTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cascada"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <ImageView
+        android:id="@+id/cascadaIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_waterfall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cascadaTV"
+        app:layout_constraintStart_toStartOf="@+id/cascadaTV"
+        app:layout_constraintTop_toBottomOf="@+id/cascadaTV"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/cascadaDescTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Te encuentras con una cascada. Descansas al borde del rio y recuperas toda tu vida."
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cascadaIV"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <Button
+        android:id="@+id/cascadaContinuarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cascadaDescTV"
+        app:layout_constraintVertical_bias="0.32999998" />
+</androidx.constraintlayout.widget.ConstraintLayout>

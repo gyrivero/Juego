@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.juego.R;
-import com.mycompany.juegotablero.evaluadores.EvaluadorPreguntas;
 
 import Exportacion.objetos.Armaduras;
 import Exportacion.objetos.Armas;
@@ -21,7 +20,8 @@ public enum Monstruos {
     LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo, 1, R.raw.lobo),
     ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco, 1, R.raw.orco),
     OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro, 1, R.raw.ogre),
-    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon, 1, R.raw.dragon);
+    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon, 1, R.raw.dragon),
+    MIMIC(20,20,3,6,"Mimic",R.drawable.ic_mimic_chest,1,R.raw.lobo);
 
     private int vidaOriginal;
     private int vida;
@@ -110,8 +110,8 @@ public enum Monstruos {
         if (precision > 1) {
             int daño = dado.girar(dañoMin, dañoMax);
             daño -= jugador.getArmadura().getDefensa();
-            if (daño < 0) {
-                daño = 0;
+            if (daño <= 0) {
+                daño = 1;
             }
             jugador.setVida(jugador.getVida() - daño);
             if (jugador.getVida() < 0) {
@@ -150,7 +150,72 @@ public enum Monstruos {
         } else if (this.nombre.equals(Monstruos.DRAGON.nombre)) {
             return itemDragon(numero, opcion);
         }
+        else if (this.nombre.equals(Monstruos.MIMIC.nombre)) {
+            return itemMimic(numero, opcion);
+        }
         return bundle;
+    }
+
+    private Bundle itemMimic(int numero, int opcion) {
+        Bundle extras = new Bundle();
+        if (nivel == 1) {
+            if (numero >= 1 && numero < 41) {
+                extras.putInt("cantidad", 0);
+            } else if (numero >= 41 && numero < 82) {
+                if (opcion == 1) {
+                    extras.putString("item", Armas.MANDOBLE.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", Armaduras.ARMADURA_DE_CUERO.name());
+                    extras.putInt("cantidad", 1);
+                }
+            } else if (numero >= 82 && numero < 95) {
+                if (opcion == 1) {
+                    extras.putString("item", Armaduras.COTA_DE_MALLAS.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", "Pocion");
+                    extras.putInt("cantidad", 2);
+                }
+            } else {
+                if (opcion == 1) {
+                    extras.putString("item", Armaduras.ARMADURA_DE_PLACAS_COMPLETAS.name());
+                    extras.putInt("cantidad", 1);
+                } else {
+                    extras.putString("item", Armas.ESPADA_DE_PLATA.name());
+                    extras.putInt("cantidad", 1);
+                }
+            }
+        } else {
+            if (numero >= 1 && numero < 41) {
+                //No encontrar nada
+            } else if (numero >= 41 && numero < 82) {
+                if (opcion == 1) {
+                    //Encontrar una pocion
+                } else {
+                    //Encontrar una armadura de cuero
+                }
+            } else if (numero >= 82 && numero < 93) {
+                if (opcion == 1) {
+                    //Encontrar un Mandoble
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else if (numero >= 93 && numero < 97) {
+                if (opcion == 1) {
+                    //Encontrar una cota de mallas
+                } else {
+                    //Encontrar 2 pociones
+                }
+            } else {
+                if (opcion == 1) {
+                    //Encontrar una placas
+                } else {
+                    //Encontrar una espada de plata
+                }
+            }
+        }
+        return extras;
     }
 
     private Bundle itemDragon(int numero, int opcion) {

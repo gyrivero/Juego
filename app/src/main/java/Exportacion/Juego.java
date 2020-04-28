@@ -15,13 +15,11 @@ import com.example.juego.FinalActivity;
 import com.example.juego.JuegoActivity;
 import com.example.juego.JugadorFragment;
 import com.example.juego.R;
-import com.mycompany.juegotablero.evaluadores.EvaluadorPreguntas;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Exportacion.evaluadores.EvaluadorFinal;
-import lombok.Data;
 
 public class Juego {
 
@@ -33,12 +31,21 @@ public class Juego {
     static private int momentoDeRonda = 0;
     static public Toast toast = null;
     static public Bundle bundle = new Bundle();
-    static public MediaPlayer mediaPlayer = null;
+    static public MediaPlayer musica = null;
+    static public MediaPlayer sonidos = null;
     static public Bundle items = new Bundle();
-    static public int turnoJugador;
+    static private int turnoJugador;
     static public boolean volverAJugar = false;
     static public int casillaAlcanzada = 0;
     static public String nombreRecord = "";
+
+    public static int getTurnoJugador() {
+        return turnoJugador;
+    }
+
+    public static void setTurnoJugador(int turnoJugador) {
+        Juego.turnoJugador = turnoJugador;
+    }
 
     public static List<Jugador> getJugadores() {
         return jugadores;
@@ -80,13 +87,30 @@ public class Juego {
         Juego.momentoDeRonda = momentoDeRonda;
     }
 
-    private void faseEmboscada(Jugador j, List<Jugador> jugadores) {
-        for (Jugador jugador:jugadores) {
-            if (!jugador.equals(j) && j.getPosicion()==jugador.getPosicion() && jugador.getVida()>0 && j.getVida()>0){
-                j.atacarJugador(jugador);
-            }
+    public void playMedia(int media,Activity activity){
+
+        try {
+
+            musica = MediaPlayer.create(activity, media);
+            musica.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    Log.w("Musica", "inicia reproduccion!  ");
+                    musica.start();
+
+                }
+            });
+
         }
+        catch (IllegalArgumentException e) {
+            Log.e("Musica", "IllegalArgumentException Unable to play audio : " + e.getMessage());
+        }
+        catch (IllegalStateException e) {
+            Log.e("Musica", "IllegalStateException Unable to play audio : " + e.getMessage());
+        }
+
     }
+
 
     static public void cambiarTurno(Activity activity, FragmentManager fragmentManager) {
         int vida;

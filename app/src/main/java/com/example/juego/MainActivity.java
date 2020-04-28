@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,12 +31,19 @@ public class MainActivity extends AppCompatActivity {
         Juego.getJugadores().clear();
         Juego.setCantidadJugadores(0);
         Juego.setRonda(1);
-        Juego.turnoJugador = 0;
+        Juego.setTurnoJugador(0);
         Juego.casillaAlcanzada = 0;
         Juego.nombreRecord = "";
-        Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
-        Juego.mediaPlayer.start();
-        Juego.mediaPlayer.setLooping(true);
+        if(Juego.musica !=null && Juego.musica.isPlaying()) {
+            Juego.musica.pause();
+            Juego.musica.seekTo(0);
+        }
+        else {
+
+        }
+        Juego.musica = MediaPlayer.create(this,R.raw.maker);
+        Juego.musica.start();
+        Juego.musica.setLooping(true);
 
     }
 
@@ -53,18 +58,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Juego.mediaPlayer.stop();
+        Juego.musica.stop();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Juego.mediaPlayer.pause();
+        Juego.musica.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Juego.mediaPlayer.start();
+        Juego.musica.start();
     }
 }

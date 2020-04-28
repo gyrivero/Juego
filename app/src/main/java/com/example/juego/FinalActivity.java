@@ -1,11 +1,9 @@
 package com.example.juego;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 
 import Exportacion.Juego;
 import Exportacion.evaluadores.EvaluadorFinal;
@@ -30,12 +28,12 @@ public class FinalActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Juego.mediaPlayer.release();
+        Juego.musica.release();
         Juego.getJugadores().clear();
     }
 
     public void playMusic(int id) {
-        Juego.mediaPlayer.release();
+        Juego.musica.release();
         mediaPlayerFinal = MediaPlayer.create(this,id);
         mediaPlayerFinal.start();
     }

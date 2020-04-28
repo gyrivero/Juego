@@ -47,7 +47,6 @@ public class MonstruoFragment extends Fragment {
     ImageButton pocionBtn;
     TextView pocionesMonstruoTV;
     AlertDialog.Builder builder;
-    MediaPlayer mediaPlayer;
     String pociones;
     FragmentManager turnoFragM;
     TextView posicionJugadorMTV;
@@ -107,12 +106,12 @@ public class MonstruoFragment extends Fragment {
 
         extras = getArguments();
         Monstruos monstruo = Monstruos.valueOf(extras.getString("monstruo"));
-        Jugador jugador = Juego.getJugadores().get(Juego.turnoJugador);
+        Jugador jugador = Juego.getJugadores().get(Juego.getTurnoJugador());
         String posicion = "Posicion: " + jugador.getPosicion();
         posicionJugadorMTV.setText(posicion);
         pociones ="Pociones: " + jugador.getPociones();
-        mediaPlayer = MediaPlayer.create(getActivity(),monstruo.getRaw());
-        mediaPlayer.start();
+        Juego.sonidos = MediaPlayer.create(getActivity(),monstruo.getRaw());
+        Juego.sonidos.start();
         nombreMonstruoTV.setText(monstruo.getNombre());
         monstruoIV.setImageDrawable(getResources().getDrawable(monstruo.getImagen(),null));
         vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
@@ -127,7 +126,7 @@ public class MonstruoFragment extends Fragment {
         }
 
         builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("El " + monstruo.getNombre() + " te ha dejado un item!")
+        builder.setMessage("El " + monstruo.getNombre() + " te ha dejado un item!").setCancelable(false)
                 .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -139,8 +138,8 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 jugador.tomarPocion();
-                mediaPlayer = MediaPlayer.create(getActivity(),R.raw.pocion);
-                mediaPlayer.start();
+                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.pocion);
+                Juego.sonidos.start();
                 vidaJugadorTV.setText(String.valueOf(jugador.getVida()));
                 pociones ="Pociones: " + jugador.getPociones();
                 pocionesMonstruoTV.setText(pociones);
@@ -155,7 +154,7 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Juego.bundle.clear();
-                mediaPlayer.release();
+                Juego.sonidos.release();
                 Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
@@ -203,8 +202,8 @@ public class MonstruoFragment extends Fragment {
             public void onClick(View v) {
                 jugador.atacar(monstruo,getActivity());
                 vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
-                mediaPlayer = MediaPlayer.create(getActivity(),R.raw.swing);
-                mediaPlayer.start();
+                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.swing);
+                Juego.sonidos.start();
                 pocionBtn.clearColorFilter();
                 if (monstruo.getVida()>0){
                     defenderBtn.setEnabled(true);

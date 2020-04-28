@@ -3,9 +3,7 @@ package com.example.juego;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,12 +61,12 @@ public class CantidadJugadoresActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Juego.mediaPlayer.pause();
+        Juego.musica.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Juego.mediaPlayer.start();
+        Juego.musica.start();
     }
 }

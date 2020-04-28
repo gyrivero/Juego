@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadaverFragment">
+
+    <TextView
+        android:id="@+id/cadaverTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadaver"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <ImageView
+        android:id="@+id/cadaverIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_carrion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cadaverTV"
+        app:layout_constraintStart_toStartOf="@+id/cadaverTV"
+        app:layout_constraintTop_toBottomOf="@+id/cadaverTV"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/cadaverDescTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Te encuentras un cadaver de un humano, probablemente asesinado por una bestia. Tiene algunas de sus cosas sobre el cuerpo muerto. Quieres agarrarlas?"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadaverIV"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <Button
+        android:id="@+id/cadaverDejarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dejar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadaverDescTV"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+    <Button
+        android:id="@+id/tomarCadaverBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tomar"
+        app:layout_constraintBottom_toBottomOf="@+id/cadaverDejarBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cadaverDejarBtn"
+        app:layout_constraintTop_toTopOf="@+id/cadaverDejarBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

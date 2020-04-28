@@ -1,24 +1,22 @@
 package Exportacion;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import com.example.juego.CadaverFragment;
+import com.example.juego.CascadaFragment;
+import com.example.juego.CofreEnterradoFragment;
 import com.example.juego.MonstruoFragment;
 import com.example.juego.R;
 
-import com.mycompany.juegotablero.evaluadores.EvaluadorPreguntas;
-
-import Exportacion.objetos.Armaduras;
-import Exportacion.objetos.Armas;
+import com.example.juego.TrampaFragment;
 
 public class Tablero {
-    private static int casillaFinal = 19;
+    private static int casillaFinal = 60;
     private boolean hayMonstruo = false;
     private Monstruos monstruo;
     private Dado dado = new Dado();
@@ -48,35 +46,34 @@ public class Tablero {
                 encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 3:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
-                //encontrarEvento(jugador, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 4:
                 encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 5:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 6:
                 encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 7:
-                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
+                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 8:
                 encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 9:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 10:
                 encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 11:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 12:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 13:
                 encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
@@ -85,37 +82,37 @@ public class Tablero {
                 encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 15:
-                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 16:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 17:
                 encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 18:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 1);
                 break;
             case 19:
-                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 20:
-                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
+                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
                 break;
             case 21:
-                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 22:
-                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 23:
                 encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 24:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 25:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 26:
                 encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
@@ -130,7 +127,7 @@ public class Tablero {
                 encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 30:
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 31:
                 encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
@@ -145,65 +142,124 @@ public class Tablero {
                 encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 35:
-                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 36:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 37:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 38:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 39:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 40:
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 41:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 42:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 43:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 44:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 45:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 46:
+                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
                 break;
             case 47:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 48:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 49:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 50:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 51:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 52:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 53:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 54:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 55:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 56:
+                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
                 break;
             case 57:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 58:
+                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
                 break;
             case 59:
+                encontrarEvento(jugador, fragManag, 2);
                 break;
             case 60:
+                encontrarMonstruo(jugador, Monstruos.DRAGON, fragManag);
                 break;
         }
     }
 
-    public void encontrarMonstruo(Jugador jugador, Monstruos monstruo, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
+    public void encontrarEvento(Jugador jugador, FragmentManager fragManag, int nivel) {
+        int opcion = dado.girar(1,100);
+        if (nivel == 1) {
+            if (opcion >= 1 && opcion < 25) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CascadaFragment()).commit();
+            }
+            else if (opcion >= 25 && opcion < 57) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CadaverFragment()).commit();
+            }
+            else if (opcion >= 57 && opcion < 72) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CofreEnterradoFragment()).commit();
+            }
+            else {
+                fragManag.beginTransaction().replace(R.id.contenedor, new TrampaFragment()).commit();
+            }
         }
+        else
+        {
+            if (opcion >= 1 && opcion < 25) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CascadaFragment()).commit();
+            }
+            else if (opcion >= 25 && opcion < 57) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CofreEnterradoFragment()).commit();
+            }
+            else if (opcion >= 57 && opcion < 72) {
+                fragManag.beginTransaction().replace(R.id.contenedor, new CadaverFragment()).commit();
+            }
+            else {
+                fragManag.beginTransaction().replace(R.id.contenedor, new TrampaFragment()).commit();
+            }
+        }
+
+    }
+
+    public void encontrarMonstruo(Jugador jugador, Monstruos monstruo, FragmentManager fragManag) {
+        /*if (chequearMuerto(jugador)) {
+            return;
+        }*/
         this.hayMonstruo = true;
         this.monstruo = monstruo;
         this.monstruo.setVida(monstruo.getVidaOriginal());
@@ -214,115 +270,10 @@ public class Tablero {
         fragManag.beginTransaction().replace(R.id.contenedor, frag).commit();
     }
 
-    public void encontrarArma(Jugador jugador, Armas arma, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
-        }
-        System.out.println("Encuentras 1 " + arma.getNombre() + " (" + arma.getMin() + "-" + arma.getMax() + ").");
-        System.out.println("Tu arma actual es: " + jugador.getArma().getNombre() + " (" + jugador.getArma().getMin() + "-" + jugador.getArma().getMax() + ").");
-        System.out.println("\nQueres agarrar el arma? " + arma.getNombre() + ".");
-        if (EvaluadorPreguntas.preguntarSiNo()) {
-            jugador.setArma(arma);
-            System.out.println("Cambiaste de arma.");
-            return;
-        }
-        System.out.println("Mantenes el mismo arma.");
-    }
-
-    public void encontrarArmadura(Jugador jugador, Armaduras armadura, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
-        }
-        System.out.println("Encuentras 1 " + armadura.getNombre() + " (" + armadura.getDefensa() + ").");
-        System.out.println("Tu armadura actual es: " + jugador.getArmadura().getNombre() + "(" + jugador.getArmadura().getDefensa() + ").");
-        System.out.println("\nQueres agarrar la armadura? " + armadura.getNombre() + ".");
-        if (EvaluadorPreguntas.preguntarSiNo()) {
-            jugador.setArmadura(armadura);
-            System.out.println("Cambiaste de armadura.");
-            return;
-        }
-        System.out.println("Mantenes la misma armadura.");
-    }
-
-    public void encontrarPocion(Jugador jugador, int cantidadDePociones, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
-        }
-        jugador.setPociones(jugador.getPociones() + cantidadDePociones);
-        if (cantidadDePociones > 1) {
-            System.out.println("Encuentras " + cantidadDePociones + " pociones.");
-            return;
-        }
-        System.out.println("Encuentras " + cantidadDePociones + " pocion.");
-        EvaluadorPreguntas.esperarTecla();
-    }
-
-    public void encontrarCofre(Jugador jugador, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
-        }
-        System.out.println("Encuentras un cofre abandonado y revisas que hay dentro.");
-        EvaluadorPreguntas.esperarTecla();
-        int opcion = dado.girar(1, 100);
-        if (opcion >= 1 && opcion <= 60) {
-            encontrarPocion(jugador, 1, fragManag);
-        } else if (opcion >= 61 && opcion <= 90) {
-            encontrarPocion(jugador, 2, fragManag);
-        } else if (opcion >= 91 && opcion <= 97) {
-            encontrarPocion(jugador, 3, fragManag);
-        } else {
-            encontrarPocion(jugador, 4, fragManag);
-        }
-        opcion = dado.girar(1, 100);
-        if (opcion >= 1 && opcion <= 50) {
-            encontrarArma(jugador, Armas.DAGA, fragManag);
-        } else if (opcion >= 51 && opcion <= 83) {
-            encontrarArma(jugador, Armas.ESPADA, fragManag);
-        } else if (opcion >= 84 && opcion <= 94) {
-            encontrarArma(jugador, Armas.MANDOBLE, fragManag);
-        } else if (opcion >= 95 && opcion <= 99) {
-            encontrarArma(jugador, Armas.ESPADA_DE_PLATA, fragManag);
-        } else {
-            encontrarArma(jugador, Armas.ESPADA_LEGENDARIA, fragManag);
-        }
-        opcion = dado.girar(1, 100);
-        if (opcion >= 1 && opcion <= 70) {
-            encontrarArmadura(jugador, Armaduras.ARMADURA_DE_CUERO, fragManag);
-        } else if (opcion >= 71 && opcion <= 92) {
-            encontrarArmadura(jugador, Armaduras.COTA_DE_MALLAS, fragManag);
-        } else if (opcion >= 93 && opcion <= 99) {
-            encontrarArmadura(jugador, Armaduras.ARMADURA_DE_PLACAS_COMPLETAS, fragManag);
-        } else {
-            encontrarArmadura(jugador, Armaduras.ARMADURA_DE_ESCAMAS_DE_DRAGON, fragManag);
-        }
-    }
-
-    public void encontrarCueva(Jugador jugador, FragmentManager fragManag) {
-        if (chequearMuerto(jugador)) {
-            return;
-        }
-        System.out.println("Te adentras en una cueva oscura.");
-        for (int i = 0; i < 3; i++) {
-            int opcion = dado.girar(1, 100);
-            if (opcion >= 1 && opcion <= 30) {
-                encontrarMonstruo(jugador, Monstruos.GOBLIN, fragManag);
-            } else if (opcion >= 31 && opcion <= 63) {
-                encontrarMonstruo(jugador, Monstruos.LOBO, fragManag);
-            } else if (opcion >= 64 && opcion <= 84) {
-                encontrarMonstruo(jugador, Monstruos.ORCO, fragManag);
-            } else if (opcion >= 85 && opcion <= 97) {
-                encontrarMonstruo(jugador, Monstruos.OGRO, fragManag);
-            } else {
-                encontrarMonstruo(jugador, Monstruos.DRAGON, fragManag);
-            }
-        }
-        encontrarCofre(jugador, fragManag);
-    }
-
-    public boolean chequearMuerto(Jugador jugador) {
+   /* public boolean chequearMuerto(Jugador jugador) {
         if (jugador.getVida() <= 0) {
             return true;
         }
         return false;
-    }
+    }*/
 }

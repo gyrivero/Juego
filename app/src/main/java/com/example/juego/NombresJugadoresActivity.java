@@ -3,15 +3,12 @@ package com.example.juego;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -92,12 +89,12 @@ public class NombresJugadoresActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Juego.mediaPlayer.pause();
+        Juego.musica.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Juego.mediaPlayer.start();
+        Juego.musica.start();
     }
 }

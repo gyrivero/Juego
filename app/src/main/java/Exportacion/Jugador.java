@@ -8,14 +8,11 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.mycompany.juegotablero.evaluadores.EvaluadorPreguntas;
-
 import Exportacion.objetos.Armaduras;
 import Exportacion.objetos.Armas;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -42,6 +39,18 @@ public class Jugador {
         this.image = image;
     }
 
+    public Jugador(String nombre, int posicion) {
+        this.nombre = nombre;
+        this.vida = vida;
+        this.dado = dado;
+        this.arma = arma;
+        this.armadura = armadura;
+        this.posicion = posicion;
+        this.pociones = pociones;
+        this.identificacion = identificacion;
+        this.image = image;
+    }
+
     public void tomarPocion() {
         vida += 7;
         pociones -= 1;
@@ -50,21 +59,36 @@ public class Jugador {
         }
     }
 
-    public void moverse(Tablero tablero, Activity activity, FragmentManager fragmentManager){
+    public void recibirDaño(int daño) {
+        vida -= daño;
+        if (vida < 0) {
+            vida = 0;
+        }
+    }
+
+    public void curarVida(int curacion) {
+        vida +=curacion;
+        if (vida > vidaMaxima) {
+            vida = vidaMaxima;
+        }
+    }
+
+    public void moverse(Activity activity){
         int resultado = dado.girar(1,6);
         posicion += resultado;
         if (posicion > Tablero.getCasillaFinal()){
             posicion = Tablero.getCasillaFinal();
         }
-        tablero.activarCasilla(posicion,this,activity, fragmentManager);
-        if (!(Juego.toast ==null)) {
-            Juego.toast.cancel();
-        }
+
         if (!(Juego.toast ==null)) {
             Juego.toast.cancel();
         }
         Juego.toast = Toast.makeText(activity.getApplicationContext(),"Sacaste: " + resultado,Toast.LENGTH_LONG);
         Juego.toast.show();
+    }
+
+    public void avanzarEnTablero(Tablero tablero, Activity activity, FragmentManager fragmentManager) {
+        tablero.activarCasilla(posicion,this,activity, fragmentManager);
     }
 
     public void atacar(Monstruos monstruo, Activity activity) {
@@ -91,43 +115,32 @@ public class Jugador {
         }
     }
 
-    public void atacar(Jugador jugador,int probabilidad) {
+    public void atacar(Jugador jugador,Activity activity,int prob) {
         int precision = dado.girar(1,10);
-        if (precision <= 6) {
+        if (precision <= prob) {
             int daño = dado.girar(arma.getMin(),arma.getMax());
             daño -= jugador.getArmadura().getDefensa();
-            if (daño < 0)
+            if (daño <= 0)
             {
-                daño = 0;
+                daño = 1;
             }
             jugador.setVida(jugador.getVida()-daño);
             if (jugador.getVida() < 0) {
                 jugador.setVida(0);
             }
-            System.out.println("Golpeas por " + daño + " puntos.");
+            String dañoString = "Golpeas por " + daño + " puntos.";
+            if (!(Juego.toast ==null)) {
+                Juego.toast.cancel();
+            }
+            Juego.toast = Toast.makeText(activity.getApplicationContext(),dañoString,Toast.LENGTH_SHORT);
+            Juego.toast.show();
         }
         else {
-            System.out.println("Erras el golpe.");
-        }
-        System.out.println("La vida del " + jugador.getNombre() + " es: " + jugador.getVida() + ".");
-        EvaluadorPreguntas.esperarTecla();
-    }
-
-    public void atacarJugador(Jugador jugador) {
-        System.out.println("Estas en la misma casilla que: " + jugador.getNombre() + ".");
-        System.out.println("\nQuieres intentar de darle un golpe?");
-        System.out.println("Si lo intentas, el tambien podra intentar darte uno.");
-        if (EvaluadorPreguntas.preguntarSiNo()) {
-            atacar(jugador,6);
-            if (jugador.getVida() > 0) {
-                System.out.println("Turno de ataque de " + jugador.getNombre() + ".");
-                jugador.atacar(this,3);                
-                return;
+            if (!(Juego.toast ==null)) {
+                Juego.toast.cancel();
             }
-            System.out.println("El jugador: " + jugador.getNombre() + " ha muerto!");            ;
-            return;
+            Juego.toast = Toast.makeText(activity.getApplicationContext(),"Erras el golpe",Toast.LENGTH_SHORT);
+            Juego.toast.show();
         }
-        System.out.println("No atacas al jugador.");
-        EvaluadorPreguntas.esperarTecla();
-    }        
+    }
 }

@@ -9,12 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import Exportacion.Juego;
-import Exportacion.Jugador;
 
 public class JuegoActivity extends AppCompatActivity {
     Fragment frag;
@@ -34,9 +30,9 @@ public class JuegoActivity extends AppCompatActivity {
 
         if (Juego.volverAJugar) {
             Log.i("Juego", "onCreate: ");
-            Juego.mediaPlayer = MediaPlayer.create(this,R.raw.maker);
-            Juego.mediaPlayer.start();
-            Juego.mediaPlayer.setLooping(true);
+            Juego.musica = MediaPlayer.create(this,R.raw.maker);
+            Juego.musica.start();
+            Juego.musica.setLooping(true);
             Juego.volverAJugar=false;
         }
     }
@@ -50,13 +46,13 @@ public class JuegoActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Juego.getJugadores().clear();
-        Juego.mediaPlayer.stop();
+        Juego.musica.stop();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Juego.mediaPlayer.pause();
+        Juego.musica.pause();
         pause = true;
 
     }
@@ -65,7 +61,7 @@ public class JuegoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (pause||!Juego.volverAJugar) {
-            Juego.mediaPlayer.start();
+            Juego.musica.start();
             pause=false;
         }
     }

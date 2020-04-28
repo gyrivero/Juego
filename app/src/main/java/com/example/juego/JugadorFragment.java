@@ -1,6 +1,8 @@
 package com.example.juego;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +20,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import Exportacion.Juego;
 import Exportacion.Jugador;
+import Exportacion.evaluadores.Evaluador;
 
 
 /**
@@ -39,7 +48,10 @@ public class JugadorFragment extends Fragment {
     Bundle extras;
     Button pocionBtn;
     int turno;
-    MediaPlayer mediaPlayer;
+    int otroJugador;
+    boolean atacarJugador;
+    AlertDialog.Builder builder;
+    FragmentManager fragmentManager;
 
     public JugadorFragment() {
         // Required empty public constructor
@@ -68,9 +80,11 @@ public class JugadorFragment extends Fragment {
         vidaTV = getView().findViewById(R.id.vidaTV);
         dadoBtn = getView().findViewById(R.id.dadoBtn);
         pocionBtn = getView().findViewById(R.id.pocionBtn);
-        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager = getFragmentManager();
 
-        turno = Juego.turnoJugador;
+        builder = new AlertDialog.Builder(getActivity());
+
+        turno = Juego.getTurnoJugador();
         jugador = Juego.getJugadores().get(turno);
 
         pocionBtn.setEnabled(false);
@@ -81,8 +95,9 @@ public class JugadorFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     jugador.tomarPocion();
-                    mediaPlayer = MediaPlayer.create(getActivity(),R.raw.pocion);
-                    mediaPlayer.start();
+                    Juego.sonidos.release();
+                    Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.pocion);
+                    Juego.sonidos.start();
                     actualizarInfo();
                     if (jugador.getPociones()<=0 || jugador.getVida()>=jugador.getVidaMaxima()){
                         pocionBtn.setEnabled(false);
@@ -94,8 +109,11 @@ public class JugadorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 jugador = Juego.getJugadores().get(turno);
-                jugador.moverse(Juego.getTablero(), getActivity(), fragmentManager);
-                actualizarInfo();
+                jugador.moverse(getActivity());
+                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.dice_1);
+                Juego.sonidos.start();
+                Evaluador.crearEvaluadores(Juego.getJugadores());
+                chequearAtaques();
             }
         });
         actualizarInfo();
@@ -118,5 +136,38 @@ public class JugadorFragment extends Fragment {
         armaduraTV.setText(armadura);
         armaTV.setText(arma);
         vidaTV.setText(vida);
+    }
+
+    public void crearMensaje() {
+        String nombreOtro = Juego.getJugadores().get(otroJugador).getNombre();
+        builder.setMessage("Estas en la misma casilla que el jugador " + nombreOtro + ". Queres atacarlo?").setCancelable(false).setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Fragment frag = new EnfrentamientoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("otroJugador",otroJugador);
+                frag.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.contenedor,frag).commit();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                chequearAtaques();
+            }
+        });
+    }
+
+    public void chequearAtaques() {
+        if (Evaluador.chequearPosicionesJugadores(turno)) {
+            otroJugador = Evaluador.devolverJugadorPosicion();
+            crearMensaje();
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        else {
+            jugador.avanzarEnTablero(Juego.getTablero(), getActivity(), fragmentManager);
+            actualizarInfo();
+        }
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CofreEnterradoFragment">
+
+<TextView
+    android:id="@+id/cofreEnterradoTV"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cofre Enterrado"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.13" />
+
+<ImageView
+    android:id="@+id/cofreIV"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_locked_chest"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/cofreEnterradoTV"
+    app:layout_constraintStart_toStartOf="@+id/cofreEnterradoTV"
+    app:layout_constraintTop_toBottomOf="@+id/cofreEnterradoTV"
+    app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/cofreDescTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Te encuentras con una zona de arena removida y desentierras un cofre! No sabes que maravillosos tesoros escondera. Quieres abrirlo o dejarlo?"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cofreIV"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <Button
+        android:id="@+id/cofreDejarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dejar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cofreDescTV"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+    <Button
+        android:id="@+id/abrirCofreBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abrir"
+        app:layout_constraintBottom_toBottomOf="@+id/cofreDejarBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cofreDejarBtn"
+        app:layout_constraintTop_toTopOf="@+id/cofreDejarBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnfrentamientoFragment">
+
+    <TextView
+        android:id="@+id/nombreDefensorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <TextView
+        android:id="@+id/vidaDefensorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vida:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nombreDefensorTV"
+        app:layout_constraintTop_toBottomOf="@+id/nombreDefensorTV" />
+
+    <TextView
+        android:id="@+id/vidaAtacanteTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vida:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/nombreAtacanteTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nombreDefensorTV" />
+
+    <TextView
+        android:id="@+id/nombreAtacanteTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nombreDefensorTV"
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toStartOf="@+id/nombreDefensorTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <ProgressBar
+        android:id="@+id/vidaDefensorPB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:scrollbarSize="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/vidaDefensorTV"
+        app:layout_constraintEnd_toEndOf="@+id/vidaDefensorTV"
+        app:layout_constraintStart_toStartOf="@+id/vidaDefensorTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/vidaAtacantePB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:scrollbarSize="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/vidaAtacanteTV"
+        app:layout_constraintStart_toStartOf="@+id/vidaAtacanteTV"
+        app:layout_constraintTop_toBottomOf="@+id/vidaAtacanteTV" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sword_clash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/defensorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atacar"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/nombreDefensorTV"
+        app:layout_constraintStart_toStartOf="@+id/nombreDefensorTV"
+        app:layout_constraintTop_toBottomOf="@+id/nombreDefensorTV"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/atacanteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atacar"
+        app:layout_constraintBottom_toTopOf="@+id/nombreAtacanteTV"
+        app:layout_constraintEnd_toEndOf="@+id/nombreAtacanteTV"
+        app:layout_constraintStart_toStartOf="@+id/nombreAtacanteTV"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/continuarEnfrenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="Continuar"
+        app:layout_constraintBottom_toTopOf="@+id/vidaAtacanteTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.17000002" />
+</androidx.constraintlayout.widget.ConstraintLayout>
