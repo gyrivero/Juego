@@ -95,9 +95,7 @@ public class JugadorFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     jugador.tomarPocion();
-                    Juego.sonidos.release();
-                    Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.pocion);
-                    Juego.sonidos.start();
+                    Juego.iniciarSonido(getActivity(),R.raw.pocion);
                     actualizarInfo();
                     if (jugador.getPociones()<=0 || jugador.getVida()>=jugador.getVidaMaxima()){
                         pocionBtn.setEnabled(false);
@@ -110,8 +108,7 @@ public class JugadorFragment extends Fragment {
             public void onClick(View v) {
                 jugador = Juego.getJugadores().get(turno);
                 jugador.moverse(getActivity());
-                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.dice_1);
-                Juego.sonidos.start();
+                Juego.iniciarSonido(getActivity(),R.raw.dice_1);
                 Evaluador.crearEvaluadores(Juego.getJugadores());
                 chequearAtaques();
             }

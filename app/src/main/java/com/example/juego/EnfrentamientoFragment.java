@@ -183,7 +183,7 @@ public class EnfrentamientoFragment extends Fragment {
                 otroJugador = 0;
             }
             if (otroJugador != otro && otroJugador != tercerJugador && otroJugador != cuartoJugador) {
-                if (Juego.getJugadores().get(otroJugador).getPosicion() == Juego.getJugadores().get(turno).getPosicion()) {
+                if (Juego.getJugadores().get(otroJugador).getPosicion() == Juego.getJugadores().get(turno).getPosicion() && Juego.getJugadores().get(otroJugador).getVida()>0) {
                     atacarJugador = true;
                     return;
                 }

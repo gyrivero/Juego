@@ -35,15 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Juego.casillaAlcanzada = 0;
         Juego.nombreRecord = "";
         if(Juego.musica !=null && Juego.musica.isPlaying()) {
-            Juego.musica.pause();
-            Juego.musica.seekTo(0);
+            Juego.musica.release();
         }
-        else {
-
-        }
-        Juego.musica = MediaPlayer.create(this,R.raw.maker);
-        Juego.musica.start();
-        Juego.musica.setLooping(true);
+        Juego.iniciarMusica(this,R.raw.maker);
 
     }
 

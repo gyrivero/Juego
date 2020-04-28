@@ -36,5 +36,11 @@ public class FinalActivity extends AppCompatActivity {
         Juego.musica.release();
         mediaPlayerFinal = MediaPlayer.create(this,id);
         mediaPlayerFinal.start();
+        mediaPlayerFinal.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mediaPlayerFinal.release();
+            }
+        });
     }
 }

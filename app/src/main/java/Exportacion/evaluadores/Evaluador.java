@@ -32,25 +32,18 @@ public class Evaluador {
         }
     }
 
-    static public void borrarEvaluadores() {
-        evaluadores.clear();
-    }
-
     static public int devolverJugadorPosicion() {
         return otroJugador;
     }
 
     static public boolean chequearPosicionesJugadores(int turno) {
         otroJugador = turno;
-        Log.i("Jugadores", "tamaño: " + evaluadores.size());
         for (int i = 1; i < evaluadores.size(); i++) {
             otroJugador += 1;
-            Log.i("Jugadores", "chequearPosicionesJugadores: " + otroJugador);
             if (otroJugador>evaluadores.size()-1) {
                 otroJugador = 0;
             }
-            Log.i("Jugadores", "index: " + otroJugador + " Nombre: " + evaluadores.get(otroJugador).getNombre());
-            if (evaluadores.get(otroJugador).getPosicion() == evaluadores.get(turno).getPosicion()) {
+            if (evaluadores.get(otroJugador).getPosicion() == evaluadores.get(turno).getPosicion() && evaluadores.get(otroJugador).getVida()>0) {
                 evaluadores.get(otroJugador).setPosicion(0);
                 return true;
             }

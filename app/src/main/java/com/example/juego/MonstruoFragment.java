@@ -110,8 +110,7 @@ public class MonstruoFragment extends Fragment {
         String posicion = "Posicion: " + jugador.getPosicion();
         posicionJugadorMTV.setText(posicion);
         pociones ="Pociones: " + jugador.getPociones();
-        Juego.sonidos = MediaPlayer.create(getActivity(),monstruo.getRaw());
-        Juego.sonidos.start();
+        Juego.iniciarSonido(getActivity(),monstruo.getRaw());
         nombreMonstruoTV.setText(monstruo.getNombre());
         monstruoIV.setImageDrawable(getResources().getDrawable(monstruo.getImagen(),null));
         vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
@@ -138,8 +137,7 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 jugador.tomarPocion();
-                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.pocion);
-                Juego.sonidos.start();
+                Juego.iniciarSonido(getActivity(),R.raw.pocion);
                 vidaJugadorTV.setText(String.valueOf(jugador.getVida()));
                 pociones ="Pociones: " + jugador.getPociones();
                 pocionesMonstruoTV.setText(pociones);
@@ -154,7 +152,6 @@ public class MonstruoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Juego.bundle.clear();
-                Juego.sonidos.release();
                 Juego.cambiarTurno(getActivity(),turnoFragM);
             }
         });
@@ -202,8 +199,7 @@ public class MonstruoFragment extends Fragment {
             public void onClick(View v) {
                 jugador.atacar(monstruo,getActivity());
                 vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
-                Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.swing);
-                Juego.sonidos.start();
+                Juego.iniciarSonido(getActivity(),R.raw.swing);
                 pocionBtn.clearColorFilter();
                 if (monstruo.getVida()>0){
                     defenderBtn.setEnabled(true);

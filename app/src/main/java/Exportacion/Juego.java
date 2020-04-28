@@ -87,8 +87,7 @@ public class Juego {
         Juego.momentoDeRonda = momentoDeRonda;
     }
 
-    public void playMedia(int media,Activity activity){
-
+    public static void iniciarMusica(Activity activity,int media){
         try {
 
             musica = MediaPlayer.create(activity, media);
@@ -97,7 +96,7 @@ public class Juego {
                 public void onPrepared(MediaPlayer mp) {
                     Log.w("Musica", "inicia reproduccion!  ");
                     musica.start();
-
+                    musica.setLooping(true);
                 }
             });
 
@@ -111,6 +110,35 @@ public class Juego {
 
     }
 
+    public static void iniciarSonido(Activity activity, int media){
+        try {
+
+            sonidos = MediaPlayer.create(activity, media);
+            sonidos.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    Log.w("Musica", "inicia reproduccion!  ");
+                    sonidos.start();
+
+                }
+            });
+
+            sonidos.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    sonidos.release();
+                }
+            });
+
+        }
+        catch (IllegalArgumentException e) {
+            Log.e("Musica", "IllegalArgumentException Unable to play audio : " + e.getMessage());
+        }
+        catch (IllegalStateException e) {
+            Log.e("Musica", "IllegalStateException Unable to play audio : " + e.getMessage());
+        }
+
+    }
 
     static public void cambiarTurno(Activity activity, FragmentManager fragmentManager) {
         int vida;
