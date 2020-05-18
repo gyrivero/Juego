@@ -81,8 +81,7 @@ public class TrampaFragment extends Fragment {
                     }
                     Juego.toast = Toast.makeText(getActivity(),"La trampa te ha herido!",Toast.LENGTH_LONG);
                     Juego.toast.show();
-                    Juego.sonidos = MediaPlayer.create(getActivity(),R.raw.trap);
-                    Juego.sonidos.start();
+                    Juego.iniciarSonido(getActivity(),R.raw.trap);
                     Juego.getJugadores().get(Juego.getTurnoJugador()).recibirDaño(7);
                 }
                 dadoTrampaBtn.setEnabled(false);

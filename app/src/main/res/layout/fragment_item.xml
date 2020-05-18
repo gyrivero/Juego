@@ -5,7 +5,8 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JugadorFragment" >
+    android:padding="4dp"
+    tools:context=".JugadorFragment">
 
     <TextView
         android:id="@+id/nombreItemTV"
@@ -37,11 +38,10 @@
         android:text="Nombre"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/vidaItemPB"
+        app:layout_constraintStart_toStartOf="@+id/vidaItemPB"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.78" />
 
     <TextView
         android:id="@+id/armaItemTV"
@@ -52,8 +52,7 @@
         android:text="Arma:fdfdsfs"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintStart_toStartOf="@+id/armaduraItemTV"
         app:layout_constraintTop_toTopOf="@+id/nombreJugadorItemTV"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -61,14 +60,13 @@
         android:id="@+id/armaduraItemTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="26dp"
         android:maxWidth="200dp"
         android:text="Armadura: fdsdsf"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/armaItemTV"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/armaItemTV"
+        app:layout_constraintStart_toEndOf="@+id/vidaItemPB"
         app:layout_constraintTop_toBottomOf="@+id/armaItemTV"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -90,9 +88,9 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/nombreJugadorItemTV"
-        app:layout_constraintStart_toStartOf="@+id/nombreJugadorItemTV"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreJugadorItemTV"
         app:layout_constraintVertical_bias="0.19" />
 
@@ -111,19 +109,19 @@
         android:id="@+id/reemplazarBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginBottom="24dp"
         android:text="Reemplazar"
         app:layout_constraintBottom_toTopOf="@+id/nombreJugadorItemTV"
-        app:layout_constraintEnd_toEndOf="@+id/nombreJugadorItemTV"
-        app:layout_constraintStart_toStartOf="@+id/nombreJugadorItemTV" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/dejarBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
         android:text="Dejar"
         app:layout_constraintBottom_toBottomOf="@+id/reemplazarBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reemplazarBtn"
         app:layout_constraintTop_toTopOf="@+id/reemplazarBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

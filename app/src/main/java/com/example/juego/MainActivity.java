@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         Juego.setTurnoJugador(0);
         Juego.casillaAlcanzada = 0;
         Juego.nombreRecord = "";
-        if(Juego.musica !=null && Juego.musica.isPlaying()) {
-            Juego.musica.release();
-        }
         Juego.iniciarMusica(this,R.raw.maker);
 
     }

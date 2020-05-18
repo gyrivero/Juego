@@ -113,6 +113,7 @@ public class MonstruoFragment extends Fragment {
         Juego.iniciarSonido(getActivity(),monstruo.getRaw());
         nombreMonstruoTV.setText(monstruo.getNombre());
         monstruoIV.setImageDrawable(getResources().getDrawable(monstruo.getImagen(),null));
+        monstruoIV.setScaleType(ImageView.ScaleType.CENTER_CROP);
         vidaMonstruoTV.setText(String.valueOf(monstruo.getVida()));
         vidaJugadorTV.setText(String.valueOf(jugador.getVida()));
         nombreJugadorTV.setText(jugador.getNombre());

@@ -5,6 +5,7 @@
     android:id="@+id/fragmentoMonstruo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context=".MonstruoFragment">
 
     <TextView
@@ -18,18 +19,22 @@
         app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <ImageView
         android:id="@+id/monstruoIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreMonstruoTV"
-        app:layout_constraintVertical_bias="0.22000003" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_dragon_fer" />
 
     <TextView
         android:id="@+id/vidaMonstruoTV"
@@ -47,13 +52,12 @@
         android:id="@+id/atacarBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
         android:text="Atacar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/monstruoIV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="@+id/monstruoIV"
-        app:layout_constraintTop_toBottomOf="@+id/monstruoIV"
-        app:layout_constraintVertical_bias="0.24"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/vidaJugadorMTV"

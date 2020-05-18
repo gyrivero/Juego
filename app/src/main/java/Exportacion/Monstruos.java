@@ -1,13 +1,8 @@
 package Exportacion;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.juego.R;
 
@@ -16,11 +11,11 @@ import Exportacion.objetos.Armas;
 
 
 public enum Monstruos {
-    GOBLIN(5, 5, 1, 3, "Goblin", R.drawable.ic_goblincolor, 1, R.raw.goblin2),
-    LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo, 1, R.raw.lobo),
-    ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco, 1, R.raw.orco),
-    OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro, 1, R.raw.ogre),
-    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon, 1, R.raw.dragon),
+    GOBLIN(5, 5, 1, 3, "Goblin", R.drawable.ic_goblin_fer, 1, R.raw.goblin2),
+    LOBO(10, 10, 2, 5, "Lobo", R.drawable.ic_lobo_fer, 1, R.raw.lobo),
+    ORCO(20, 20, 4, 7, "Orco", R.drawable.ic_orco_fer, 1, R.raw.orco),
+    OGRO(25, 25, 5, 10, "Ogro", R.drawable.ic_ogro_fer, 1, R.raw.ogre),
+    DRAGON(40, 40, 12, 20, "Dragon", R.drawable.ic_dragon_fer, 1, R.raw.dragon),
     MIMIC(20,20,3,6,"Mimic",R.drawable.ic_mimic_chest,1,R.raw.lobo);
 
     private int vidaOriginal;

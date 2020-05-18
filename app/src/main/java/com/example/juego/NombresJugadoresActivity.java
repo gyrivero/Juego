@@ -56,7 +56,11 @@ public class NombresJugadoresActivity extends AppCompatActivity {
             drawable = getDrawable(R.drawable.ic_mujer);
         }
         if (Exportacion.Juego.getCantidadJugadores() >= i) {
-            Exportacion.Juego.getJugadores().add(new Jugador(nombreTV.getText().toString(),(i-1),drawable));
+            boolean cheat = false;
+            if (nombreTV.getText().toString().equalsIgnoreCase("Gonzaloyr")) {
+                cheat = true;
+            }
+            Exportacion.Juego.getJugadores().add(new Jugador(nombreTV.getText().toString(),(i-1),drawable,cheat));
             nombreTV.getText().clear();
             Toast.makeText(this, "Se ha agregado al jugador: " + Juego.getJugadores().get(i - 1).getNombre(), Toast.LENGTH_SHORT).show();
         }

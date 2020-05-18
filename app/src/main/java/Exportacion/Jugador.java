@@ -28,12 +28,18 @@ public class Jugador {
     private int identificacion;
     private Drawable image;
 
-    public Jugador(String nombre,int identificacion, Drawable image) {
+    public Jugador(String nombre,int identificacion, Drawable image,boolean cheat) {
+        if (cheat) {
+            this.arma = Armas.ESPADA_LEGENDARIA;
+            this.armadura = Armaduras.ARMADURA_DE_ESCAMAS_DE_DRAGON;
+        }
+        else {
+            this.arma = Armas.PUÑOS;
+            this.armadura = Armaduras.ROPA;
+        }
         this.posicion = 0;
         this.nombre = nombre;
         this.vida = vidaMaxima;
-        this.arma = Armas.PUÑOS;
-        this.armadura = Armaduras.ROPA;
         this.pociones = 0;
         this.identificacion = identificacion;
         this.image = image;
@@ -41,14 +47,7 @@ public class Jugador {
 
     public Jugador(String nombre, int posicion) {
         this.nombre = nombre;
-        this.vida = vida;
-        this.dado = dado;
-        this.arma = arma;
-        this.armadura = armadura;
         this.posicion = posicion;
-        this.pociones = pociones;
-        this.identificacion = identificacion;
-        this.image = image;
     }
 
     public void tomarPocion() {
